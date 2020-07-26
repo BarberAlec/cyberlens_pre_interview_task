@@ -19,9 +19,8 @@ Consumer::~Consumer()
 {
 }
 
-void Consumer::run()
+void Consumer::begin_thread()
 {
-    std::cout << "Starting thread" << std::endl;
     bool datastream_finished = false;
 
     // Check for job
@@ -116,12 +115,11 @@ void Consumer::do_job(csv_row entry)
 
 bool Consumer::compare_packets(unique_packet pkt1, unique_packet pkt2)
 {
+    // Note that we do not compare protocols as they are certainly the same.
     if (pkt1.enum_entry[file_idx.dst_bytes] != pkt2.enum_entry[file_idx.dst_bytes])
         return false;
     if (pkt1.enum_entry[file_idx.src_bytes] != pkt2.enum_entry[file_idx.src_bytes])
         return false;
-    // if (pkt1.enum_entry[file_idx.protocol_type] != pkt1.enum_entry[file_idx.protocol_type])
-    //     return false;
     if (pkt1.enum_entry[file_idx.service] != pkt2.enum_entry[file_idx.service])
         return false;
     if (pkt1.enum_entry[file_idx.duration] != pkt2.enum_entry[file_idx.duration])
@@ -218,6 +216,10 @@ void Consumer::generate_report()
 
 Consumer::enum_csv_row Consumer::make_enum_entry(csv_row entry)
 {
+    // TODO: make the enumeration process for service and flags generalised.
+    // Current solution can not handle new and unseen values. New system should
+    // make new enumeration values for each not currently seen flag/service.
+
     enum_csv_row new_enum_row(11);
 
     // Ignore idx

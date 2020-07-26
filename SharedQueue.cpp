@@ -1,6 +1,6 @@
 #include "SharedQueue.h"
 
-std::mutex g_mut;
+//std::mutex g_mut;
 
 SharedQueue::SharedQueue()
 {
@@ -46,7 +46,7 @@ bool SharedQueue::empty()
 
 std::vector<std::string> SharedQueue::change_queue(int operation,std::vector<std::string> row)
 {
-    std::lock_guard<std::mutex> lock(g_mut);
+    std::lock_guard<std::mutex> lock(*mut);
     if (operation == 0)
     {
         std::vector<std::string> ans = my_queue.front();

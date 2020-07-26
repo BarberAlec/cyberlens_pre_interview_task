@@ -98,9 +98,9 @@ void Producer::terminate_consumers()
 
 bool Producer::begin_consumer_threads()
 {
-    TCP_thrd = new std::thread(&Consumer::run,&TCP_consumer);
-    ICMP_thrd = new std::thread(&Consumer::run, &ICMP_consumer);
-    UDP_thrd = new std::thread(&Consumer::run, &UDP_consumer);
+    TCP_thrd = new std::thread(&Consumer::begin_thread,&TCP_consumer);
+    ICMP_thrd = new std::thread(&Consumer::begin_thread, &ICMP_consumer);
+    UDP_thrd = new std::thread(&Consumer::begin_thread, &UDP_consumer);
 
     return true;
 }

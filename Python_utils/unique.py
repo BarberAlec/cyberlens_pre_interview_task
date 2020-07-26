@@ -3,4 +3,4 @@ import pandas as pd
 
 df = pd.read_csv('dataset/kdd.csv')
 
-print(df['service'].value_counts())
+print(df['land'].value_counts())
