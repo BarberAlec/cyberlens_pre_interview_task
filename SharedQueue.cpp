@@ -1,7 +1,5 @@
 #include "SharedQueue.hpp"
 
-//std::mutex g_mut;
-
 SharedQueue::SharedQueue()
 {
 }
@@ -25,7 +23,7 @@ std::vector<std::string> SharedQueue::pop_front()
 
     // return ans;
     std::vector<std::string> dummy;
-    return change_queue(0,dummy);
+    return change_queue(0, dummy);
 }
 
 void SharedQueue::push_back(std::vector<std::string> row)
@@ -33,7 +31,7 @@ void SharedQueue::push_back(std::vector<std::string> row)
     //std::lock_guard<std::mutex> lock(*mut);
     //std::lock_guard<std::mutex> lock(g_mut);
     // my_queue.push(row);
-    change_queue(1,row);
+    change_queue(1, row);
 }
 
 bool SharedQueue::empty()
@@ -44,7 +42,7 @@ bool SharedQueue::empty()
     return my_queue.empty();
 }
 
-std::vector<std::string> SharedQueue::change_queue(int operation,std::vector<std::string> row)
+std::vector<std::string> SharedQueue::change_queue(int operation, std::vector<std::string> row)
 {
     std::lock_guard<std::mutex> lock(*mut);
     if (operation == 0)
@@ -58,10 +56,6 @@ std::vector<std::string> SharedQueue::change_queue(int operation,std::vector<std
     {
         my_queue.push(row);
     }
-    // else if (operation == 2)
-    // {
-        
-    // }
     std::vector<std::string> dummy;
     return dummy;
 }
