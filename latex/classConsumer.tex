@@ -1,0 +1,93 @@
+\hypertarget{classConsumer}{}\doxysection{Consumer Class Reference}
+\label{classConsumer}\index{Consumer@{Consumer}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classConsumer_afcb08430b60a51118b9531865d4f0def}\label{classConsumer_afcb08430b60a51118b9531865d4f0def}} 
+typedef std\+::vector$<$ std\+::string $>$ {\bfseries csv\+\_\+row}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classConsumer_a6e324bf6625a85a2fa467a8c1a1505a0}\label{classConsumer_a6e324bf6625a85a2fa467a8c1a1505a0}} 
+{\bfseries Consumer} (std\+::string protocol)
+\item 
+void \mbox{\hyperlink{classConsumer_ad1c32dfc3dd767f20b0ee71ed248911c}{begin\+\_\+thread}} ()
+\item 
+void \mbox{\hyperlink{classConsumer_afd4b48064e86e874ec7de8547b9c65d9}{push\+\_\+job}} (csv\+\_\+row row)
+\item 
+void \mbox{\hyperlink{classConsumer_ab4010883d201af8199d266ca5615b66c}{push\+\_\+cmd\+\_\+job}} (csv\+\_\+row row)
+\item 
+void \mbox{\hyperlink{classConsumer_a277ae1c7793dbeb26c4fa6d4a99df68b}{set\+\_\+protocol\+\_\+type}} (std\+::string protocol)
+\item 
+void \mbox{\hyperlink{classConsumer_a242ae7cf38e2ce2c042f3e72808ccbda}{set\+\_\+mutex}} (std\+::mutex $\ast$m)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConsumer_ad1c32dfc3dd767f20b0ee71ed248911c}\label{classConsumer_ad1c32dfc3dd767f20b0ee71ed248911c}} 
+\index{Consumer@{Consumer}!begin\_thread@{begin\_thread}}
+\index{begin\_thread@{begin\_thread}!Consumer@{Consumer}}
+\doxysubsubsection{\texorpdfstring{begin\_thread()}{begin\_thread()}}
+{\footnotesize\ttfamily void Consumer\+::begin\+\_\+thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Begin main operation of \mbox{\hyperlink{classConsumer}{Consumer}} thread. The consumer will begin checking for data on the shared queues. Operation will cease when an E\+ND command is sent by the producer in the producer\+\_\+cmds queue. If no jobs left on queue, then thread will sleep.
+
+(T\+O\+DO\+:implement exponential backoff for checking queue for jobs to save resources). \mbox{\Hypertarget{classConsumer_ab4010883d201af8199d266ca5615b66c}\label{classConsumer_ab4010883d201af8199d266ca5615b66c}} 
+\index{Consumer@{Consumer}!push\_cmd\_job@{push\_cmd\_job}}
+\index{push\_cmd\_job@{push\_cmd\_job}!Consumer@{Consumer}}
+\doxysubsubsection{\texorpdfstring{push\_cmd\_job()}{push\_cmd\_job()}}
+{\footnotesize\ttfamily void Consumer\+::push\+\_\+cmd\+\_\+job (\begin{DoxyParamCaption}\item[{csv\+\_\+row}]{row }\end{DoxyParamCaption})}
+
+Public method assinging a meta command to the consumer from the \mbox{\hyperlink{classProducer}{Producer}}. E.\+g. sending a R\+E\+P\+O\+RT or E\+ND request. Using a seperate queue allows for better reaction rates by the consumer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & csv row with associated command. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsumer_afd4b48064e86e874ec7de8547b9c65d9}\label{classConsumer_afd4b48064e86e874ec7de8547b9c65d9}} 
+\index{Consumer@{Consumer}!push\_job@{push\_job}}
+\index{push\_job@{push\_job}!Consumer@{Consumer}}
+\doxysubsubsection{\texorpdfstring{push\_job()}{push\_job()}}
+{\footnotesize\ttfamily void Consumer\+::push\+\_\+job (\begin{DoxyParamCaption}\item[{csv\+\_\+row}]{row }\end{DoxyParamCaption})}
+
+Public method assigning a job (ie a csv row / packet) to the consumer by the \mbox{\hyperlink{classProducer}{Producer}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & csv row to be assigned to the consumer. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsumer_a242ae7cf38e2ce2c042f3e72808ccbda}\label{classConsumer_a242ae7cf38e2ce2c042f3e72808ccbda}} 
+\index{Consumer@{Consumer}!set\_mutex@{set\_mutex}}
+\index{set\_mutex@{set\_mutex}!Consumer@{Consumer}}
+\doxysubsubsection{\texorpdfstring{set\_mutex()}{set\_mutex()}}
+{\footnotesize\ttfamily void Consumer\+::set\+\_\+mutex (\begin{DoxyParamCaption}\item[{std\+::mutex $\ast$}]{m }\end{DoxyParamCaption})}
+
+Mutex is provided by the producer and is assigned to each consumer. \mbox{\hyperlink{classConsumer}{Consumer}} in turn passes the mutext to its Shared\+Queues.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & pointer to a mutex. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConsumer_a277ae1c7793dbeb26c4fa6d4a99df68b}\label{classConsumer_a277ae1c7793dbeb26c4fa6d4a99df68b}} 
+\index{Consumer@{Consumer}!set\_protocol\_type@{set\_protocol\_type}}
+\index{set\_protocol\_type@{set\_protocol\_type}!Consumer@{Consumer}}
+\doxysubsubsection{\texorpdfstring{set\_protocol\_type()}{set\_protocol\_type()}}
+{\footnotesize\ttfamily void Consumer\+::set\+\_\+protocol\+\_\+type (\begin{DoxyParamCaption}\item[{std\+::string}]{protocol }\end{DoxyParamCaption})}
+
+Set consumer as either tcp, icmp or udp.
+
+
+\begin{DoxyParams}{Parameters}
+{\em protocol} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Consumer.\+hpp\item 
+Consumer.\+cpp\end{DoxyCompactItemize}
