@@ -3,18 +3,65 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classSharedQueue_a3b254ef0833f4e3315077b212b8fb291}\label{classSharedQueue_a3b254ef0833f4e3315077b212b8fb291}} 
-void {\bfseries set\+\_\+mutex} (std\+::mutex $\ast$m)
+void \mbox{\hyperlink{classSharedQueue_a3b254ef0833f4e3315077b212b8fb291}{set\+\_\+mutex}} (std\+::mutex $\ast$m)
 \item 
-\mbox{\Hypertarget{classSharedQueue_a19baeca5508656c5bff319007832c131}\label{classSharedQueue_a19baeca5508656c5bff319007832c131}} 
-std\+::vector$<$ std\+::string $>$ {\bfseries pop\+\_\+front} ()
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classSharedQueue_a19baeca5508656c5bff319007832c131}{pop\+\_\+front}} ()
 \item 
-\mbox{\Hypertarget{classSharedQueue_a45ec9ccc67e899fc40ca6f5febe7dcad}\label{classSharedQueue_a45ec9ccc67e899fc40ca6f5febe7dcad}} 
-void {\bfseries push\+\_\+back} (std\+::vector$<$ std\+::string $>$ row)
+void \mbox{\hyperlink{classSharedQueue_a45ec9ccc67e899fc40ca6f5febe7dcad}{push\+\_\+back}} (std\+::vector$<$ std\+::string $>$ row)
 \item 
-\mbox{\Hypertarget{classSharedQueue_ace2b8d798939167e828ed07ecc76bd04}\label{classSharedQueue_ace2b8d798939167e828ed07ecc76bd04}} 
-bool {\bfseries empty} ()
+bool \mbox{\hyperlink{classSharedQueue_ace2b8d798939167e828ed07ecc76bd04}{empty}} ()
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSharedQueue_ace2b8d798939167e828ed07ecc76bd04}\label{classSharedQueue_ace2b8d798939167e828ed07ecc76bd04}} 
+\index{SharedQueue@{SharedQueue}!empty@{empty}}
+\index{empty@{empty}!SharedQueue@{SharedQueue}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool Shared\+Queue\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Return true if the queue is empty.
+
+\begin{DoxyReturn}{Returns}
+true if empty. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSharedQueue_a19baeca5508656c5bff319007832c131}\label{classSharedQueue_a19baeca5508656c5bff319007832c131}} 
+\index{SharedQueue@{SharedQueue}!pop\_front@{pop\_front}}
+\index{pop\_front@{pop\_front}!SharedQueue@{SharedQueue}}
+\doxysubsubsection{\texorpdfstring{pop\_front()}{pop\_front()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Shared\+Queue\+::pop\+\_\+front (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Pop from queue safely.
+
+\begin{DoxyReturn}{Returns}
+csv\+\_\+row. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSharedQueue_a45ec9ccc67e899fc40ca6f5febe7dcad}\label{classSharedQueue_a45ec9ccc67e899fc40ca6f5febe7dcad}} 
+\index{SharedQueue@{SharedQueue}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!SharedQueue@{SharedQueue}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily void Shared\+Queue\+::push\+\_\+back (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{row }\end{DoxyParamCaption})}
+
+push on to queue safely.
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & csv\+\_\+row to push. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classSharedQueue_a3b254ef0833f4e3315077b212b8fb291}\label{classSharedQueue_a3b254ef0833f4e3315077b212b8fb291}} 
+\index{SharedQueue@{SharedQueue}!set\_mutex@{set\_mutex}}
+\index{set\_mutex@{set\_mutex}!SharedQueue@{SharedQueue}}
+\doxysubsubsection{\texorpdfstring{set\_mutex()}{set\_mutex()}}
+{\footnotesize\ttfamily void Shared\+Queue\+::set\+\_\+mutex (\begin{DoxyParamCaption}\item[{std\+::mutex $\ast$}]{m }\end{DoxyParamCaption})}
+
+Assign mutex from consumer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & mutex pointer. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

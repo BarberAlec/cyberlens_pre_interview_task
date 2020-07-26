@@ -119,7 +119,7 @@ void Producer::start()
     std::string user_input;
 
     std::cout << "Welcome. This packet parsing simulation was built by Alec Barber for cyberLens." << std::endl;
-    std::cout << "Documentation can be found at ___" << std::endl
+    std::cout << "Documentation can be found at https://barberalec.github.io/cyberlens_pre_interview_task/" << std::endl
               << std::endl;
     std::cout << "If you have any further questions with regards to this softwares exection, \nplease contact me at barberal@tcd.ie"
               << std::endl

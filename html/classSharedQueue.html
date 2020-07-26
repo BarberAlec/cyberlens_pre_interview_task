@@ -72,19 +72,104 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3b254ef0833f4e3315077b212b8fb291"><td class="memItemLeft" align="right" valign="top"><a id="a3b254ef0833f4e3315077b212b8fb291"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>set_mutex</b> (std::mutex *m)</td></tr>
+<tr class="memitem:a3b254ef0833f4e3315077b212b8fb291"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSharedQueue.html#a3b254ef0833f4e3315077b212b8fb291">set_mutex</a> (std::mutex *m)</td></tr>
 <tr class="separator:a3b254ef0833f4e3315077b212b8fb291"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19baeca5508656c5bff319007832c131"><td class="memItemLeft" align="right" valign="top"><a id="a19baeca5508656c5bff319007832c131"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pop_front</b> ()</td></tr>
+<tr class="memitem:a19baeca5508656c5bff319007832c131"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSharedQueue.html#a19baeca5508656c5bff319007832c131">pop_front</a> ()</td></tr>
 <tr class="separator:a19baeca5508656c5bff319007832c131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ec9ccc67e899fc40ca6f5febe7dcad"><td class="memItemLeft" align="right" valign="top"><a id="a45ec9ccc67e899fc40ca6f5febe7dcad"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>push_back</b> (std::vector&lt; std::string &gt; row)</td></tr>
+<tr class="memitem:a45ec9ccc67e899fc40ca6f5febe7dcad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSharedQueue.html#a45ec9ccc67e899fc40ca6f5febe7dcad">push_back</a> (std::vector&lt; std::string &gt; row)</td></tr>
 <tr class="separator:a45ec9ccc67e899fc40ca6f5febe7dcad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace2b8d798939167e828ed07ecc76bd04"><td class="memItemLeft" align="right" valign="top"><a id="ace2b8d798939167e828ed07ecc76bd04"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> ()</td></tr>
+<tr class="memitem:ace2b8d798939167e828ed07ecc76bd04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSharedQueue.html#ace2b8d798939167e828ed07ecc76bd04">empty</a> ()</td></tr>
 <tr class="separator:ace2b8d798939167e828ed07ecc76bd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ace2b8d798939167e828ed07ecc76bd04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace2b8d798939167e828ed07ecc76bd04">&#9670;&nbsp;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SharedQueue::empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Return true if the queue is empty.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if empty. </dd></dl>
+
+</div>
+</div>
+<a id="a19baeca5508656c5bff319007832c131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19baeca5508656c5bff319007832c131">&#9670;&nbsp;</a></span>pop_front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; SharedQueue::pop_front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pop from queue safely.</p>
+<dl class="section return"><dt>Returns</dt><dd>csv_row. </dd></dl>
+
+</div>
+</div>
+<a id="a45ec9ccc67e899fc40ca6f5febe7dcad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45ec9ccc67e899fc40ca6f5febe7dcad">&#9670;&nbsp;</a></span>push_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SharedQueue::push_back </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>row</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>push on to queue safely.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>csv_row to push. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3b254ef0833f4e3315077b212b8fb291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b254ef0833f4e3315077b212b8fb291">&#9670;&nbsp;</a></span>set_mutex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SharedQueue::set_mutex </td>
+          <td>(</td>
+          <td class="paramtype">std::mutex *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Assign mutex from consumer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>mutex pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="SharedQueue_8hpp_source.html">SharedQueue.hpp</a></li>
 <li>SharedQueue.cpp</li>
