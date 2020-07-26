@@ -1,4 +1,4 @@
-#include "Producer.h"
+#include "Producer.hpp"
 
 Producer::Producer()
 {
@@ -40,7 +40,7 @@ void Producer::set_data_directory(std::string file_dir)
     file_path = file_dir;
 }
 
-void Producer::run()
+void Producer::start_datastream()
 {
     // Open file and throw out header
     csv_file.open(file_path, std::ios::in);
@@ -138,7 +138,7 @@ void Producer::start()
             // User selected start option
             std::cout << "Begining processing of packet stream." << std::endl
                       << std::endl;
-            run();
+            start_datastream();
         }
         else if (user_input.compare("report") == 0)
         {

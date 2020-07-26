@@ -7,11 +7,11 @@ cyberlens: main.o Producer.o Consumer.o SharedQueue.o
 	$(CXX) $(CXXFLAGS) -o cyberlens main.o Producer.o Consumer.o SharedQueue.o $(LIBS)
 
 
-main.o: main.cpp Producer.h Consumer.h SharedQueue.h
+main.o: main.cpp Producer.hpp Consumer.hpp SharedQueue.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp $(LIBS)
 
-SharedQueue.o: SharedQueue.h
+SharedQueue.o: SharedQueue.hpp
 
-Consumer.o: Consumer.h SharedQueue.h
+Consumer.o: Consumer.hpp SharedQueue.hpp
 
-Producer.o: Producer.h Consumer.h
+Producer.o: Producer.hpp Consumer.hpp
