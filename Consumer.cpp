@@ -30,7 +30,7 @@ void Consumer::run()
     {
         // Queue empty, but no terminate message recieved, begin backoff
         // TODO: implement exponential backoff
-        std::this_thread::sleep_for(1s);
+        std::this_thread::sleep_for(40ns);
 
         // Search for new job again.
         datastream_finished = do_job_queue();
@@ -53,14 +53,12 @@ bool Consumer::check_for_cmd()
         if (curr_entry[0].compare("END") == 0)
         {
             // Last packet recieved
-            std::cout << "Received termination signal" << std::endl;
             return true;
         }
 
         // Check for a report generation request
         if (curr_entry[0].compare("REPORT") == 0)
         {
-            std::cout << "Recieved report signal" << std::endl;
             generate_report();
             return false;
         }
@@ -78,7 +76,7 @@ bool Consumer::do_job_queue()
     terminate = check_for_cmd();
     if (terminate) 
         return true;
-        
+
     while (!job_queue.empty())
     {
         if (terminate)
@@ -118,25 +116,25 @@ void Consumer::do_job(csv_row entry)
 
 bool Consumer::compare_packets(unique_packet pkt1, unique_packet pkt2)
 {
-    if (pkt1.enum_entry[file_idx.dst_bytes] != pkt1.enum_entry[file_idx.dst_bytes])
+    if (pkt1.enum_entry[file_idx.dst_bytes] != pkt2.enum_entry[file_idx.dst_bytes])
         return false;
-    if (pkt1.enum_entry[file_idx.src_bytes] != pkt1.enum_entry[file_idx.src_bytes])
+    if (pkt1.enum_entry[file_idx.src_bytes] != pkt2.enum_entry[file_idx.src_bytes])
         return false;
-    if (pkt1.enum_entry[file_idx.protocol_type] != pkt1.enum_entry[file_idx.protocol_type])
+    // if (pkt1.enum_entry[file_idx.protocol_type] != pkt1.enum_entry[file_idx.protocol_type])
+    //     return false;
+    if (pkt1.enum_entry[file_idx.service] != pkt2.enum_entry[file_idx.service])
         return false;
-    if (pkt1.enum_entry[file_idx.service] != pkt1.enum_entry[file_idx.service])
+    if (pkt1.enum_entry[file_idx.duration] != pkt2.enum_entry[file_idx.duration])
         return false;
-    if (pkt1.enum_entry[file_idx.duration] != pkt1.enum_entry[file_idx.duration])
+    if (pkt1.enum_entry[file_idx.flag] != pkt2.enum_entry[file_idx.flag])
         return false;
-    if (pkt1.enum_entry[file_idx.flag] != pkt1.enum_entry[file_idx.flag])
+    if (pkt1.enum_entry[file_idx.hot] != pkt2.enum_entry[file_idx.hot])
         return false;
-    if (pkt1.enum_entry[file_idx.hot] != pkt1.enum_entry[file_idx.hot])
+    if (pkt1.enum_entry[file_idx.land] != pkt2.enum_entry[file_idx.land])
         return false;
-    if (pkt1.enum_entry[file_idx.land] != pkt1.enum_entry[file_idx.land])
+    if (pkt1.enum_entry[file_idx.urgent] != pkt2.enum_entry[file_idx.urgent])
         return false;
-    if (pkt1.enum_entry[file_idx.urgent] != pkt1.enum_entry[file_idx.urgent])
-        return false;
-    if (pkt1.enum_entry[file_idx.wrong_fragment] != pkt1.enum_entry[file_idx.wrong_fragment])
+    if (pkt1.enum_entry[file_idx.wrong_fragment] != pkt2.enum_entry[file_idx.wrong_fragment])
         return false;
 
     return true;
@@ -194,6 +192,26 @@ void Consumer::generate_report()
     report.open(file_path, std::ios::out);
 
     report << "test output" << std::endl;
+    for (unique_packet pkt : unq_pkt_list)
+    {
+        report << "Value: ";
+        for (std::string s : pkt.entry)
+        {
+            report << s << ",";  
+        }
+        report << std::endl;
+        
+        report << "Index: ";
+        for (int idx : pkt.indices)
+        {
+            report << idx << ",";
+        }
+        report << std::endl;
+
+        report << "Count: " << pkt.count << std::endl;
+
+        report << std::endl;
+    }
 
     report.close();
 }
@@ -258,7 +276,7 @@ Consumer::enum_csv_row Consumer::make_enum_entry(csv_row entry)
     {
         new_enum_row[file_idx.service] = 0;
     }
-    else if (entry[file_idx.service].compare("smpt") == 0)
+    else if (entry[file_idx.service].compare("smtp") == 0)
     {
         new_enum_row[file_idx.service] = 1;
     }

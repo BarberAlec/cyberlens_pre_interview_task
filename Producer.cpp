@@ -27,10 +27,12 @@ Producer::~Producer()
         // TCP_thrd->join();
         // ICMP_thrd->join();
         // UDP_thrd->join();
-        delete TCP_thrd;
-        delete ICMP_thrd;
-        delete UDP_thrd;
+        
     }
+    // Threads are always allocated on startup now, so should always deallocate.
+    delete TCP_thrd;
+    delete ICMP_thrd;
+    delete UDP_thrd;
 }
 
 void Producer::set_data_directory(std::string file_dir)
