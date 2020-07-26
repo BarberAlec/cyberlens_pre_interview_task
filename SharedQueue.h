@@ -15,7 +15,10 @@ public:
 
     void push_back(std::vector<std::string> row);
 
+    bool empty();
+
 private:
+    std::vector<std::string> change_queue(int operation,std::vector<std::string> row);
     std::mutex *mut;
     std::queue<std::vector<std::string>> my_queue;
 };

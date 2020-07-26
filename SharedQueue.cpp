@@ -1,5 +1,7 @@
 #include "SharedQueue.h"
 
+std::mutex g_mut;
+
 SharedQueue::SharedQueue()
 {
 }
@@ -15,16 +17,51 @@ void SharedQueue::set_mutex(std::mutex *m)
 
 std::vector<std::string> SharedQueue::pop_front()
 {
-    std::lock_guard<std::mutex> lock(*mut);
+    //std::lock_guard<std::mutex> lock(*mut);
+    //std::lock_guard<std::mutex> lock(g_mut);
 
-    std::vector<std::string> ans = my_queue.front();
-    my_queue.pop();
+    // std::vector<std::string> ans = my_queue.front();
+    // my_queue.pop();
 
-    return ans;
+    // return ans;
+    std::vector<std::string> dummy;
+    return change_queue(0,dummy);
 }
 
 void SharedQueue::push_back(std::vector<std::string> row)
 {
-    std::lock_guard<std::mutex> lock(*mut);
-    my_queue.push(row);
+    //std::lock_guard<std::mutex> lock(*mut);
+    //std::lock_guard<std::mutex> lock(g_mut);
+    // my_queue.push(row);
+    change_queue(1,row);
+}
+
+bool SharedQueue::empty()
+{
+    // Reading memory should be safe so no lock
+    //std::lock_guard<std::mutex> lock(*mut);
+    //std::lock_guard<std::mutex> lock(g_mut);
+    return my_queue.empty();
+}
+
+std::vector<std::string> SharedQueue::change_queue(int operation,std::vector<std::string> row)
+{
+    std::lock_guard<std::mutex> lock(g_mut);
+    if (operation == 0)
+    {
+        std::vector<std::string> ans = my_queue.front();
+        my_queue.pop();
+
+        return ans;
+    }
+    else if (operation == 1)
+    {
+        my_queue.push(row);
+    }
+    // else if (operation == 2)
+    // {
+        
+    // }
+    std::vector<std::string> dummy;
+    return dummy;
 }

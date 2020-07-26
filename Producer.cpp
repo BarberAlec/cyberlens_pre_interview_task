@@ -8,6 +8,13 @@ Producer::Producer()
     TCP_consumer.set_mutex(&TCP_mutex);
     ICMP_consumer.set_mutex(&IMCP_mutex);
     UDP_consumer.set_mutex(&UDP_mutex);
+
+    TCP_consumer.set_protocol_type("tcp");
+    ICMP_consumer.set_protocol_type("icmp");
+    UDP_consumer.set_protocol_type("udp");
+
+    // Launch consumer threads
+    threads_active = begin_consumer_threads();
 }
 
 Producer::~Producer()
@@ -33,9 +40,6 @@ void Producer::set_data_directory(std::string file_dir)
 
 void Producer::run()
 {
-    // Launch consumer threads
-    threads_active = begin_consumer_threads();
-
     // Open file and throw out header
     csv_file.open(file_path, std::ios::in);
     read_csv_entry();
@@ -65,21 +69,24 @@ void Producer::run()
 
 void Producer::terminate_consumers()
 {
-    csv_row terminate;
-    terminate.push_back("END");
+    if(!threads_active)
+        return;
+    csv_row terminate_req;
+    terminate_req.push_back("END");
     for (int i = 1; i < 12; i++)
     {
-        terminate.push_back("");
+        terminate_req.push_back("");
     }
 
-    terminate[file_idx.protocol_type] = "tcp";
-    push_to_queue(terminate);
+    // push_to_queue looks a t protocol todecide which queue to use.
+    terminate_req[file_idx.protocol_type] = "tcp";
+    push_to_cmd_queue(terminate_req);
 
-    terminate[file_idx.protocol_type] = "icmp";
-    push_to_queue(terminate);
+    terminate_req[file_idx.protocol_type] = "icmp";
+    push_to_cmd_queue(terminate_req);
 
-    terminate[file_idx.protocol_type] = "udp";
-    push_to_queue(terminate);
+    terminate_req[file_idx.protocol_type] = "udp";
+    push_to_cmd_queue(terminate_req);
 
     TCP_thrd->join();
     ICMP_thrd->join();
@@ -89,9 +96,9 @@ void Producer::terminate_consumers()
 
 bool Producer::begin_consumer_threads()
 {
-    TCP_thrd = new std::thread(&Consumer::run, TCP_consumer);
-    ICMP_thrd = new std::thread(&Consumer::run, ICMP_consumer);
-    UDP_thrd = new std::thread(&Consumer::run, UDP_consumer);
+    TCP_thrd = new std::thread(&Consumer::run,&TCP_consumer);
+    ICMP_thrd = new std::thread(&Consumer::run, &ICMP_consumer);
+    UDP_thrd = new std::thread(&Consumer::run, &UDP_consumer);
 
     return true;
 }
@@ -134,9 +141,7 @@ void Producer::start()
         else if (user_input.compare("report") == 0)
         {
             // User selected report option
-            std::cout << "Generating and printing reports." << std::endl
-                      << std::endl;
-            TCP_consumer.generate_report();
+            generate_reports();
         }
         else if (user_input.empty())
         {
@@ -155,8 +160,33 @@ void Producer::start()
         // Processed command, now accept next.
         std::cin >> user_input;
     }
-
+    terminate_consumers();
     std::cout << "Exiting with grace and reverence." << std::endl;
+}
+
+void Producer::generate_reports()
+{
+    std::cout << "Sending request for reports" << std::endl
+              << std::endl;
+    // TCP_consumer.generate_report();
+    // ICMP_consumer.generate_report();
+    // UDP_consumer.generate_report();
+
+    csv_row report_req;
+    report_req.push_back("REPORT");
+    for (int i = 1; i < 12; i++)
+    {
+        report_req.push_back("");
+    }
+
+    report_req[file_idx.protocol_type] = "tcp";
+    push_to_cmd_queue(report_req);
+
+    report_req[file_idx.protocol_type] = "icmp";
+    push_to_cmd_queue(report_req);
+
+    report_req[file_idx.protocol_type] = "udp";
+    push_to_cmd_queue(report_req);
 }
 
 Producer::csv_row Producer::read_csv_entry()
@@ -195,6 +225,29 @@ bool Producer::push_to_queue(csv_row row)
     else if (protocol_type.compare("udp") == 0)
     {
         UDP_consumer.push_job(row);
+    }
+    else
+    {
+        return false;
+    }
+    return true;
+}
+
+bool Producer::push_to_cmd_queue(csv_row row)
+{
+    std::string protocol_type = row[(file_idx.protocol_type)];
+
+    if (protocol_type.compare("tcp") == 0)
+    {
+        TCP_consumer.push_cmd_job(row);
+    }
+    else if (protocol_type.compare("icmp") == 0)
+    {
+        ICMP_consumer.push_cmd_job(row);
+    }
+    else if (protocol_type.compare("udp") == 0)
+    {
+        UDP_consumer.push_cmd_job(row);
     }
     else
     {

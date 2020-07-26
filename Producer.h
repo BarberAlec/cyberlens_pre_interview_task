@@ -52,11 +52,21 @@ private:
     bool push_to_queue(csv_row row);
 
     /**
+     * Pushes command to appropaite command queue
+     * 
+     * @param row Vector of Strings defining entry.
+     * @return true if success, false if no good queue.
+     */
+    bool push_to_cmd_queue(csv_row row);
+
+    /**
      * Instantiates three new threads for each consumer
      * 
      * @return true if success.
      */
     bool begin_consumer_threads();
+
+    void generate_reports();
 
     struct csv_idx
     {
