@@ -19,4 +19,8 @@ Run the program with
 ./cyberlens
 ```
 
+# Documentation
+Docs can be found [here](https://barberalec.github.io/cyberlens_pre_interview_task/).
+
 # Project Specifications
+![](dataset/CodingChallenge-1.png)
