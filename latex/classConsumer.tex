@@ -1,5 +1,9 @@
 \hypertarget{classConsumer}{}\doxysection{Consumer Class Reference}
 \label{classConsumer}\index{Consumer@{Consumer}}
+
+
+{\ttfamily \#include $<$Consumer.\+hpp$>$}
+
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,6 +27,9 @@ void \mbox{\hyperlink{classConsumer_a277ae1c7793dbeb26c4fa6d4a99df68b}{set\+\_\+
 void \mbox{\hyperlink{classConsumer_a242ae7cf38e2ce2c042f3e72808ccbda}{set\+\_\+mutex}} (std\+::mutex $\ast$m)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+This class handles all processing of the data passed by the producer. A consumer object should be instantiated inside the associated producer. The consumer communicates with the producer via two Shared\+Queues, producer\+\_\+cmds and job\+\_\+queue. 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classConsumer_ad1c32dfc3dd767f20b0ee71ed248911c}\label{classConsumer_ad1c32dfc3dd767f20b0ee71ed248911c}} 

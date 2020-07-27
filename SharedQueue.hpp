@@ -3,6 +3,9 @@
 #include <queue>
 #include <string>
 
+/**
+ * Wrapper class for a standard queue which hopefully protects against memory collisions.
+ */
 class SharedQueue
 {
 public:

@@ -9,6 +9,10 @@
 #include <thread>
 #include "Consumer.hpp"
 
+/**
+ * Handles processing of csv packet data and the distribution of of csv rows to the three consumers, creation of the consumer threads
+ * and all interactions with the user.
+ */
 class Producer
 {
 public:
@@ -16,11 +20,11 @@ public:
     ~Producer();
 
     /**
-     * Begins interation with user.
+     * Begin interation with user.
      */
     void start();
 
-    /***
+    /**
      * Specify path to csv data.
      * 
      * @param file_dir path to csv file.

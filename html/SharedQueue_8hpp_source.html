@@ -71,35 +71,35 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;queue&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="classSharedQueue.html">    6</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSharedQueue.html">SharedQueue</a></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classSharedQueue.html">SharedQueue</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    ~<a class="code" href="classSharedQueue.html">SharedQueue</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSharedQueue.html#a3b254ef0833f4e3315077b212b8fb291">set_mutex</a>(std::mutex *m);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="classSharedQueue.html#a19baeca5508656c5bff319007832c131">pop_front</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSharedQueue.html#a45ec9ccc67e899fc40ca6f5febe7dcad">push_back</a>(std::vector&lt;std::string&gt; row);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSharedQueue.html#ace2b8d798939167e828ed07ecc76bd04">empty</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    std::vector&lt;std::string&gt; change_queue(<span class="keywordtype">int</span> operation, std::vector&lt;std::string&gt; row);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    std::mutex *mut;                               <span class="comment">// Mutex pointer</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::queue&lt;std::vector&lt;std::string&gt;&gt; my_queue; <span class="comment">// Standard c++ queue</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classSharedQueue.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSharedQueue.html">SharedQueue</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="classSharedQueue.html">SharedQueue</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ~<a class="code" href="classSharedQueue.html">SharedQueue</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSharedQueue.html#a3b254ef0833f4e3315077b212b8fb291">set_mutex</a>(std::mutex *m);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="classSharedQueue.html#a19baeca5508656c5bff319007832c131">pop_front</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSharedQueue.html#a45ec9ccc67e899fc40ca6f5febe7dcad">push_back</a>(std::vector&lt;std::string&gt; row);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classSharedQueue.html#ace2b8d798939167e828ed07ecc76bd04">empty</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    std::vector&lt;std::string&gt; change_queue(<span class="keywordtype">int</span> operation, std::vector&lt;std::string&gt; row);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::mutex *mut;                               <span class="comment">// Mutex pointer</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::queue&lt;std::vector&lt;std::string&gt;&gt; my_queue; <span class="comment">// Standard c++ queue</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassSharedQueue_html_ace2b8d798939167e828ed07ecc76bd04"><div class="ttname"><a href="classSharedQueue.html#ace2b8d798939167e828ed07ecc76bd04">SharedQueue::empty</a></div><div class="ttdeci">bool empty()</div><div class="ttdef"><b>Definition:</b> SharedQueue.cpp:37</div></div>
 <div class="ttc" id="aclassSharedQueue_html_a45ec9ccc67e899fc40ca6f5febe7dcad"><div class="ttname"><a href="classSharedQueue.html#a45ec9ccc67e899fc40ca6f5febe7dcad">SharedQueue::push_back</a></div><div class="ttdeci">void push_back(std::vector&lt; std::string &gt; row)</div><div class="ttdef"><b>Definition:</b> SharedQueue.cpp:29</div></div>
-<div class="ttc" id="aclassSharedQueue_html"><div class="ttname"><a href="classSharedQueue.html">SharedQueue</a></div><div class="ttdef"><b>Definition:</b> SharedQueue.hpp:7</div></div>
+<div class="ttc" id="aclassSharedQueue_html"><div class="ttname"><a href="classSharedQueue.html">SharedQueue</a></div><div class="ttdef"><b>Definition:</b> SharedQueue.hpp:10</div></div>
 <div class="ttc" id="aclassSharedQueue_html_a19baeca5508656c5bff319007832c131"><div class="ttname"><a href="classSharedQueue.html#a19baeca5508656c5bff319007832c131">SharedQueue::pop_front</a></div><div class="ttdeci">std::vector&lt; std::string &gt; pop_front()</div><div class="ttdef"><b>Definition:</b> SharedQueue.cpp:16</div></div>
 <div class="ttc" id="aclassSharedQueue_html_a3b254ef0833f4e3315077b212b8fb291"><div class="ttname"><a href="classSharedQueue.html#a3b254ef0833f4e3315077b212b8fb291">SharedQueue::set_mutex</a></div><div class="ttdeci">void set_mutex(std::mutex *m)</div><div class="ttdef"><b>Definition:</b> SharedQueue.cpp:11</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
+Generated on Mon Jul 27 2020 10:04:05 for CyberLens pre-interview Task by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
 </small></address>
 </body>
 </html>

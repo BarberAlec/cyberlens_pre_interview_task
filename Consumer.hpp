@@ -5,7 +5,10 @@
 #include <mutex>
 #include <thread>
 #include "SharedQueue.hpp"
-
+/**
+ * This class handles all processing of the data passed by the producer. A consumer object should be instantiated inside the
+ * associated producer. The consumer communicates with the producer via two SharedQueues, producer_cmds and job_queue. 
+ */
 class Consumer
 {
 public:
@@ -96,7 +99,7 @@ private:
      * Generate and print consumer report to file.
      */
     void generate_report();
-    
+
     /**
      * Pull next task on job queue.
      * 

@@ -77,80 +77,76 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;Consumer.hpp&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classProducer.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classProducer.html">Producer</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="classProducer.html">Producer</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    ~<a class="code" href="classProducer.html">Producer</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classProducer.html#a4bb2f73afd341e10c390e378b31e18c3">start</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">    /***</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     * Specify path to csv data.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     * </span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     * @param file_dir path to csv file.</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> set_data_directory(std::string file_dir);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">struct </span>csv_idx</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> idx = 0;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> duration = 1;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> protocol_type = 2;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> service = 3;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> flag = 4;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> src_bytes = 5;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> dst_bytes = 6;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> land = 7;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> wrong_fragment = 8;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> urgent = 9;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> hot = 10;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Find row element by colomn helper.</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    csv_idx file_idx;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Shorthand to describe a row of the csv file.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">typedef</span> std::vector&lt;std::string&gt; csv_row;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// CSV file directory and associated fstream object.</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    std::string file_path;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::fstream csv_file;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classProducer.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classProducer.html">Producer</a></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classProducer.html">Producer</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    ~<a class="code" href="classProducer.html">Producer</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classProducer.html#a4bb2f73afd341e10c390e378b31e18c3">start</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classProducer.html#adf245a24998e79d067d28d296aaf3bd0">set_data_directory</a>(std::string file_dir);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">struct </span>csv_idx</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> idx = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> duration = 1;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> protocol_type = 2;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> service = 3;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> flag = 4;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> src_bytes = 5;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> dst_bytes = 6;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> land = 7;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> wrong_fragment = 8;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> urgent = 9;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> hot = 10;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Find row element by colomn helper.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    csv_idx file_idx;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Shorthand to describe a row of the csv file.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">typedef</span> std::vector&lt;std::string&gt; csv_row;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// Consumers and associated thread pointers</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classConsumer.html">Consumer</a> TCP_consumer, ICMP_consumer, UDP_consumer;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::thread *TCP_thrd, *ICMP_thrd, *UDP_thrd;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// CSV file directory and associated fstream object.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    std::string file_path;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::fstream csv_file;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Mutex for guarding shared queues</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::mutex TCP_mutex, IMCP_mutex, UDP_mutex;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Flag idenifin when threads have been allocated.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> threads_active;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> print_menu();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> start_datastream();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    csv_row read_csv_entry();</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">bool</span> push_to_queue(csv_row row);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">bool</span> push_to_cmd_queue(csv_row row);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">bool</span> begin_consumer_threads();</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">void</span> terminate_consumers();</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">void</span> generate_reports();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// Consumers and associated thread pointers</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classConsumer.html">Consumer</a> TCP_consumer, ICMP_consumer, UDP_consumer;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::thread *TCP_thrd, *ICMP_thrd, *UDP_thrd;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">// Mutex for guarding shared queues</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::mutex TCP_mutex, IMCP_mutex, UDP_mutex;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// Flag idenifin when threads have been allocated.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> threads_active;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> print_menu();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> start_datastream();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    csv_row read_csv_entry();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">bool</span> push_to_queue(csv_row row);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">bool</span> push_to_cmd_queue(csv_row row);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">bool</span> begin_consumer_threads();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> terminate_consumers();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> generate_reports();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;};</div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassConsumer_html"><div class="ttname"><a href="classConsumer.html">Consumer</a></div><div class="ttdef"><b>Definition:</b> Consumer.hpp:10</div></div>
+<div class="ttc" id="aclassProducer_html_adf245a24998e79d067d28d296aaf3bd0"><div class="ttname"><a href="classProducer.html#adf245a24998e79d067d28d296aaf3bd0">Producer::set_data_directory</a></div><div class="ttdeci">void set_data_directory(std::string file_dir)</div><div class="ttdef"><b>Definition:</b> Producer.cpp:38</div></div>
+<div class="ttc" id="aclassConsumer_html"><div class="ttname"><a href="classConsumer.html">Consumer</a></div><div class="ttdef"><b>Definition:</b> Consumer.hpp:13</div></div>
 <div class="ttc" id="aclassProducer_html_a4bb2f73afd341e10c390e378b31e18c3"><div class="ttname"><a href="classProducer.html#a4bb2f73afd341e10c390e378b31e18c3">Producer::start</a></div><div class="ttdeci">void start()</div><div class="ttdef"><b>Definition:</b> Producer.cpp:117</div></div>
-<div class="ttc" id="aclassProducer_html"><div class="ttname"><a href="classProducer.html">Producer</a></div><div class="ttdef"><b>Definition:</b> Producer.hpp:13</div></div>
+<div class="ttc" id="aclassProducer_html"><div class="ttname"><a href="classProducer.html">Producer</a></div><div class="ttdef"><b>Definition:</b> Producer.hpp:17</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
+Generated on Mon Jul 27 2020 10:04:05 for CyberLens pre-interview Task by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
 </small></address>
 </body>
 </html>

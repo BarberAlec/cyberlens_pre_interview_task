@@ -1,6 +1,7 @@
-\begin{DoxyAuthor}{Authors}
+\begin{DoxyAuthor}{Author}
 Alec Barber
 \end{DoxyAuthor}
-\hypertarget{index_intro}{}\doxysection{Introduction}\label{index_intro}
-This project was completed as a pre interview task for cyberlens \href{https://www.cyberlens.eu/}{\texttt{ cyberlens}}. It simulates the processing of packets via multple consumer threads.\hypertarget{index_requirements}{}\doxysection{requirements}\label{index_requirements}
+\hypertarget{index_intro}{}\doxysection{Project Description}\label{index_intro}
+This project was completed as a pre-\/interview task for \href{https://www.cyberlens.eu/}{\texttt{ cyberlens}}. It simulates the processing of packets via multiple consumer threads. Each consumer thread accepts a packet in the form of a vector of strings from the producer. Each consumer continually check for meta commands from its producer. These commands are either E\+ND or R\+E\+P\+O\+RT. The consumer can perform these actions before completing all tasks on the job queue.\hypertarget{index_Shortcomings}{}\doxysection{Shortcomings}\label{index_Shortcomings}
+Their are a number of items which I feel could have had a better solutions, many with T\+O\+DO comments within the code.\hypertarget{index_requirements}{}\doxysection{requirements}\label{index_requirements}
 pthread lib. 
