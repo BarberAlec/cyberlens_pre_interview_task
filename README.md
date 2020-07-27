@@ -1,4 +1,4 @@
-# cyberlens_pre_interview_task
+# cyberlens pre-interview task
 A pre-interview task for cyberlens. A multi-threaded, c++ packet processing simulation.
 
 # First time running
