@@ -1,7 +1,15 @@
-\begin{DoxyAuthor}{Author}
-Alec Barber
-\end{DoxyAuthor}
 \hypertarget{index_intro}{}\doxysection{Project Description}\label{index_intro}
-This project was completed as a pre-\/interview task for \href{https://www.cyberlens.eu/}{\texttt{ cyberlens}}. It simulates the processing of packets via multiple consumer threads. Each consumer thread accepts a packet in the form of a vector of strings from the producer. Each consumer continually check for meta commands from its producer. These commands are either E\+ND or R\+E\+P\+O\+RT. The consumer can perform these actions before completing all tasks on the job queue.\hypertarget{index_Shortcomings}{}\doxysection{Shortcomings}\label{index_Shortcomings}
-Their are a number of items which I feel could have had a better solutions, many with T\+O\+DO comments within the code.\hypertarget{index_requirements}{}\doxysection{requirements}\label{index_requirements}
-pthread lib. 
+This project was completed as a pre-\/interview task for \href{https://www.cyberlens.eu/}{\texttt{ cyberlens}}. It simulates the processing of packets via multiple consumer threads.
+
+The program is initiated via the instantiation of a \mbox{\hyperlink{classProducer}{Producer}} object. The \mbox{\hyperlink{classProducer}{Producer}} object, constructs three \mbox{\hyperlink{classConsumer}{Consumer}} objects and begins their operation in a new thread (begin\+\_\+thread()). Each consumer thread continually searches both the job queue and command queue for new tasks and commands respectively.
+
+There are two forms of commands that the \mbox{\hyperlink{classProducer}{Producer}} can send in the command queue. The first is a R\+E\+P\+O\+RT command which asks the \mbox{\hyperlink{classConsumer}{Consumer}} to generate and print(to file) a report of all packets thus far processed. The second command is an E\+ND command which asks the consumer to cease searching for new jobs/tasks. The E\+ND command is always followed by a join call from the \mbox{\hyperlink{classProducer}{Producer}} thread.
+
+With regards to packet processing, the consumer accepts packets in the form of a vector of strings (typedefined as csv\+\_\+row). Once received, the consumer creates a new unique\+\_\+packet object and performs a comparison check against all packets previously received to check for a duplicate. If a duplicate is found, the count and index of the original packet \textquotesingle{}unique\+\_\+packet\textquotesingle{} is updated. If no duplicate is found, a new entry is made. One element that can be certainly improved upon is how the unique\+\_\+packets are stored. Currently a vector is used. This is not ideal as with increasing numbers of unique\+\_\+packets, the problem of checking to see if the next packet is unique becomes harder. Depending on memory restrictions, a solution could be the creation of a smart hashing function and associated hash map.
+
+Both commands and jobs are passed from the \mbox{\hyperlink{classProducer}{Producer}} to the \mbox{\hyperlink{classConsumer}{Consumer}} via a \mbox{\hyperlink{classSharedQueue}{Shared\+Queue}} object. \mbox{\hyperlink{classSharedQueue}{Shared\+Queue}} is a wrapper for a stanard queue and aims to make access to the queue safe. This is achieved for a mutex which is assigned to it via the \mbox{\hyperlink{classProducer}{Producer}} and \mbox{\hyperlink{classConsumer}{Consumer}}.\hypertarget{index_requirements}{}\doxysection{requirements}\label{index_requirements}
+pthread lib.
+
+\begin{DoxyAuthor}{Author}
+Alec Barber 
+\end{DoxyAuthor}

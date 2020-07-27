@@ -66,21 +66,22 @@ $(function() {
 <div class="title">Cyberlens Coding Challenge </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Alec Barber</dd></dl>
-<h1><a class="anchor" id="intro"></a>
+<div class="textblock"><h1><a class="anchor" id="intro"></a>
 Project Description</h1>
-<p>This project was completed as a pre-interview task for <a href="https://www.cyberlens.eu/">cyberlens</a>. It simulates the processing of packets via multiple consumer threads. Each consumer thread accepts a packet in the form of a vector of strings from the producer. Each consumer continually check for meta commands from its producer. These commands are either END or REPORT. The consumer can perform these actions before completing all tasks on the job queue.</p>
-<h1><a class="anchor" id="Shortcomings"></a>
-Shortcomings</h1>
-<p>Their are a number of items which I feel could have had a better solutions, many with TODO comments within the code.</p>
+<p>This project was completed as a pre-interview task for <a href="https://www.cyberlens.eu/">cyberlens</a>. It simulates the processing of packets via multiple consumer threads.</p>
+<p>The program is initiated via the instantiation of a <a class="el" href="classProducer.html">Producer</a> object. The <a class="el" href="classProducer.html">Producer</a> object, constructs three <a class="el" href="classConsumer.html">Consumer</a> objects and begins their operation in a new thread (begin_thread()). Each consumer thread continually searches both the job queue and command queue for new tasks and commands respectively.</p>
+<p>There are two forms of commands that the <a class="el" href="classProducer.html">Producer</a> can send in the command queue. The first is a REPORT command which asks the <a class="el" href="classConsumer.html">Consumer</a> to generate and print(to file) a report of all packets thus far processed. The second command is an END command which asks the consumer to cease searching for new jobs/tasks. The END command is always followed by a join call from the <a class="el" href="classProducer.html">Producer</a> thread.</p>
+<p>With regards to packet processing, the consumer accepts packets in the form of a vector of strings (typedefined as csv_row). Once received, the consumer creates a new unique_packet object and performs a comparison check against all packets previously received to check for a duplicate. If a duplicate is found, the count and index of the original packet 'unique_packet' is updated. If no duplicate is found, a new entry is made. One element that can be certainly improved upon is how the unique_packets are stored. Currently a vector is used. This is not ideal as with increasing numbers of unique_packets, the problem of checking to see if the next packet is unique becomes harder. Depending on memory restrictions, a solution could be the creation of a smart hashing function and associated hash map.</p>
+<p>Both commands and jobs are passed from the <a class="el" href="classProducer.html">Producer</a> to the <a class="el" href="classConsumer.html">Consumer</a> via a <a class="el" href="classSharedQueue.html">SharedQueue</a> object. <a class="el" href="classSharedQueue.html">SharedQueue</a> is a wrapper for a stanard queue and aims to make access to the queue safe. This is achieved for a mutex which is assigned to it via the <a class="el" href="classProducer.html">Producer</a> and <a class="el" href="classConsumer.html">Consumer</a>.</p>
 <h1><a class="anchor" id="requirements"></a>
 requirements</h1>
-<p>pthread lib. </p>
+<p>pthread lib.</p>
+<dl class="section author"><dt>Author</dt><dd>Alec Barber </dd></dl>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 27 2020 10:04:05 for CyberLens pre-interview Task by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
+Generated on Mon Jul 27 2020 10:43:35 for CyberLens pre-interview Task by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19
 </small></address>
 </body>
 </html>
