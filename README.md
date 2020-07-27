@@ -1,6 +1,8 @@
 # cyberlens pre-interview task
 A pre-interview task for cyberlens. A multi-threaded, c++ packet processing simulation.
 
+Requires gcc 9.3.0. Program was developed with ubuntu 20.04.
+
 # First time running
 
 Clone repo using 
@@ -21,6 +23,7 @@ Run the program with
 
 # Documentation
 Docs can be found [here](https://barberalec.github.io/cyberlens_pre_interview_task/).
+
 
 # Project Specifications
 ![](dataset/CodingChallenge-1.png)
