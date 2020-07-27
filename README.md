@@ -6,7 +6,7 @@ A pre-interview task for cyberlens. A multi-threaded, c++ packet processing simu
 Clone repo using 
 ```shell
 git clone https://github.com/BarberAlec/cyberlens_pre_interview_task
-cd cyberlens
+cd cyberlens_pre_interview_task
 ```
 
 Make the project with the make command.
