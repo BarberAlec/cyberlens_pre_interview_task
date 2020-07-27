@@ -4,9 +4,9 @@
 * This project was completed as a pre-interview task for <A href="https://www.cyberlens.eu/">cyberlens</A>. 
 * It simulates the processing of packets via multiple consumer threads. 
 * 
-* The program is initiated via the instantiation of a Producer object. The Producer object, constructs three 
-* Consumer objects and begins their operation in a new thread (begin_thread()). Each consumer thread  continually searches both 
-* the job queue and command queue for new tasks and commands respectively.
+* The program is initiated via the instantiation of a Producer object. The Producer object constructs three 
+* Consumer objects and begins their operation in a new thread (begin_thread()). Each consumer thread continually searches both 
+* their personal job and command queues for new tasks and Producer commands respectively.
 *
 * There are two forms of commands that the Producer can send in the command queue. The first is a REPORT command which asks
 * the Consumer to generate and print(to file) a report of all packets thus far processed. The second command is an END command

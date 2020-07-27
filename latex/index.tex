@@ -1,7 +1,7 @@
 \hypertarget{index_intro}{}\doxysection{Project Description}\label{index_intro}
 This project was completed as a pre-\/interview task for \href{https://www.cyberlens.eu/}{\texttt{ cyberlens}}. It simulates the processing of packets via multiple consumer threads.
 
-The program is initiated via the instantiation of a \mbox{\hyperlink{classProducer}{Producer}} object. The \mbox{\hyperlink{classProducer}{Producer}} object, constructs three \mbox{\hyperlink{classConsumer}{Consumer}} objects and begins their operation in a new thread (begin\+\_\+thread()). Each consumer thread continually searches both the job queue and command queue for new tasks and commands respectively.
+The program is initiated via the instantiation of a \mbox{\hyperlink{classProducer}{Producer}} object. The \mbox{\hyperlink{classProducer}{Producer}} object constructs three \mbox{\hyperlink{classConsumer}{Consumer}} objects and begins their operation in a new thread (begin\+\_\+thread()). Each consumer thread continually searches both their personal job and command queues for new tasks and \mbox{\hyperlink{classProducer}{Producer}} commands respectively.
 
 There are two forms of commands that the \mbox{\hyperlink{classProducer}{Producer}} can send in the command queue. The first is a R\+E\+P\+O\+RT command which asks the \mbox{\hyperlink{classConsumer}{Consumer}} to generate and print(to file) a report of all packets thus far processed. The second command is an E\+ND command which asks the consumer to cease searching for new jobs/tasks. The E\+ND command is always followed by a join call from the \mbox{\hyperlink{classProducer}{Producer}} thread.
 
